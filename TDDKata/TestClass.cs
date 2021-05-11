@@ -65,8 +65,8 @@ namespace TDDKata
         }
 
         [Test]
-        [TestCase(";\n1;2", -1)]
-        [TestCase(";\n1:2;3;4;5:6;7;", -1)]
+        [TestCase(";\n1;2", 0)]
+        [TestCase(";\n1:2;3;4;5:6;7;", 0)]
         [TestCase(",\n1,2,3,4\n5,6,7", 28)]
         public void Sum_PrefixDoesNotExist_CorrectResult(string str, int expectedResult)
         {

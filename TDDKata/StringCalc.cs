@@ -10,21 +10,34 @@ namespace TDDKata
     {
         internal int Sum(string numbers)
         {
-            string[] separatingStrings = { ",", "\n" };
+            var separatingStrings = new List<string>(){ ",", "\n"};
 
-            string[] array = numbers.Split(separatingStrings, StringSplitOptions.RemoveEmptyEntries);
+            if (numbers.StartsWith("//"))
+            {
+                separatingStrings.Add(";");
+                separatingStrings.Add(":");
+            }
 
+            string[] array = numbers.Split(separatingStrings.ToArray(), StringSplitOptions.RemoveEmptyEntries);
+
+            var digits = GetListOfDigits(array);
+
+            return digits.Sum();
+        }
+
+        private IEnumerable<int> GetListOfDigits(string[] array)
+        {
             var listData = new List<int>();
 
             for (int i = 0; i < array.Length; i++)
             {
                 var element = array[i];
 
-                if(int.TryParse(element, out var digit))
+                if (int.TryParse(element, out var digit))
                 {
-                    if(digit < 0)
+                    if (digit < 0)
                     {
-                        return -1;
+                        return new List<int>() { -1 };
                     }
                     else
                     {
@@ -37,7 +50,7 @@ namespace TDDKata
                 }
             }
 
-            return listData.Sum();
+            return listData;
         }
     }
 }
