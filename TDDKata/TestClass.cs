@@ -42,10 +42,17 @@ namespace TDDKata
         }
 
         [Test]
-        public void Sum_ToMuchArguments_CorrectResult()
+        public void Sum_LineBreaskAsSeparator_CorrectResult()
         {
-            int value = stringCalc.Sum("1,1,1,1,1");
-            Assert.That(value, Is.EqualTo(-1), "Wrong actual value");
+            int value = stringCalc.Sum("1\n4\n4");
+            Assert.That(value, Is.EqualTo(9), "Wrong actual value");
+        }
+
+        [Test]
+        public void Sum_DifferentSeparators_CorrectResult()
+        {
+            int value = stringCalc.Sum("1\n4\n4,4,4\n4\n4");
+            Assert.That(value, Is.EqualTo(25), "Wrong actual value");
         }
     }
 }

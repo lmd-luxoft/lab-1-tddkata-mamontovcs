@@ -10,7 +10,9 @@ namespace TDDKata
     {
         internal int Sum(string numbers)
         {
-            var array = numbers.Split(',');
+            string[] separatingStrings = { ",", "\n" };
+
+            string[] array = numbers.Split(separatingStrings, StringSplitOptions.RemoveEmptyEntries);
 
             var listData = new List<int>();
 
@@ -33,11 +35,6 @@ namespace TDDKata
                 {
                     listData.Add(0);
                 }
-            }
-
-            if(listData.Count > 2)
-            {
-                return -1;
             }
 
             return listData.Sum();
